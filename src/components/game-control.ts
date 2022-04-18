@@ -5,7 +5,9 @@ export default class GameControl {
     bricks: Bricks
     plate: Plate;
     // plate direction
-    direction?: string;
+    direction = '';
+    // 進行中
+    isLive = true;
     constructor() {
         this.bricks = new Bricks(20);
         this.plate = new Plate();
@@ -14,13 +16,13 @@ export default class GameControl {
     }
 
     init() {
-        document.addEventListener('keydown', this.handleKeydown)
+        // 沒有bind，this會指向document
+        document.addEventListener('keydown', this.handleKeydown.bind(this))
+        this.move();
     }
 
     handleKeydown(event: KeyboardEvent) {
         this.direction = event.key;
-        console.log(this)
-        this.move();
     }
 
     move() {
@@ -37,7 +39,6 @@ export default class GameControl {
                 break;
         }
         this.plate.CurrentX = x;
-        console.log(this.plate.CurrentX);
-
+        this.isLive && setTimeout(this.move.bind(this), 200)
     }
 }
