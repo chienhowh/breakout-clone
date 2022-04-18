@@ -9,6 +9,7 @@ export default class Plate {
         this.stageWidth = this.plateStage.clientWidth;
         this.plate.style.width = '80px';
         this.plate.style.height = '20px';
+        this.plate.style.left = '45%';
     }
 
     set CurrentX(value: number) {
