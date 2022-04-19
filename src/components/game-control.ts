@@ -11,11 +11,11 @@ export default class GameControl {
     direction = '';
     // 進行中
     isLive = true;
-
+    stage = document.getElementById('stage') as HTMLElement;
     constructor() {
         this.bricks = new Bricks(20);
-        this.plate = new Plate();
-        this.ball = new Ball();
+        this.plate = new Plate(this.stage);
+        this.ball = new Ball(this.stage);
         this.init();
     }
 
@@ -34,16 +34,16 @@ export default class GameControl {
         switch (this.direction) {
             case 'ArrowLeft':
             case 'Left':
-                x -= 10;
+                x -= 8;
                 break;
             case 'ArrowRight':
             case 'Right':
-                x += 10;
+                x += 8;
             default:
                 break;
         }
         this.plate.CurrentX = x;
-        setTimeout(this.plateMove.bind(this), 200)
+        setTimeout(this.plateMove.bind(this), 100)
     }
 
 

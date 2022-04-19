@@ -2,25 +2,19 @@
     margin: 0 auto;
     position: relative;
     width: 500px;
-    border: 1px solid goldenrod;
-}
-
-#brick-stage {
-    width: 100%;
     height: 500px;
-    position: relative;
-}
-
-#plate-stage {
-    width: 100%;
-    height: 20px;
-    position: relative;
+    border: 1px solid goldenrod;
+    overflow: hidden;
 }
 
 #plate {
     border-radius: 8px;
     background-color: black;
     position: absolute;
+    width: 80px;
+    height: 20px;
+    bottom: 0;
+    left: 45%;
 }
 
 #ball {
@@ -29,6 +23,6 @@
     height: 20px;
     border-radius: 50%;
     background-color: gold;
-    top: 480px;
+    top: 450px;
     left: 50%;
 }

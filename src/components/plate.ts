@@ -1,15 +1,10 @@
 export default class Plate {
-    plateStage: HTMLElement;
     stageWidth = 0;
     plate: HTMLElement
 
-    constructor() {
-        this.plateStage = document.getElementById('plate-stage') as HTMLElement;
+    constructor(stage: HTMLElement) {
         this.plate = document.getElementById('plate') as HTMLElement;
-        this.stageWidth = this.plateStage.clientWidth;
-        this.plate.style.width = '80px';
-        this.plate.style.height = '20px';
-        this.plate.style.left = '45%';
+        this.stageWidth = stage.clientWidth;
     }
 
     set CurrentX(value: number) {

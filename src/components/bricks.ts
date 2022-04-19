@@ -6,7 +6,7 @@ export default class Bricks {
 
     // 建立方塊
     generateBricks(n: number) {
-        const stage = document.getElementById('brick-stage') as HTMLElement;
+        const stage = document.getElementById('stage') as HTMLElement;
         const stageWidth = stage.clientWidth;
         for (let i = 0; i < n; i++) {
             const brick = document.createElement('div');
