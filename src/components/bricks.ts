@@ -1,12 +1,12 @@
 export default class Bricks {
-
+    bricks?: HTMLCollectionOf<HTMLDivElement>;
     constructor(nums: number) {
         this.generateBricks(nums);
     }
 
     // 建立方塊
     generateBricks(n: number) {
-        const stage = document.getElementById('stage') as HTMLElement;
+        const stage = document.getElementById('brick-stage') as HTMLElement;
         const stageWidth = stage.clientWidth;
         for (let i = 0; i < n; i++) {
             const brick = document.createElement('div');
@@ -16,8 +16,8 @@ export default class Bricks {
             stage.appendChild(brick);
         }
 
-        const bricks = stage.getElementsByTagName('div');
-        for (let b of bricks) {
+        this.bricks = stage.getElementsByTagName('div');
+        for (let b of this.bricks) {
             // 取得當下位置
             b.style.display = 'inline-block';
             b.style.left = b.offsetLeft + "px";
