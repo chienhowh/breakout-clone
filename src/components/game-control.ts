@@ -6,15 +6,17 @@ export default class GameControl {
     // gc可以拿到所有的class，所以決定把邊界檢查放在gc
     stage = document.getElementById('stage') as HTMLElement;
     brickStage = document.getElementById('brick-stage') as HTMLElement;
+    scoreBox = document.getElementById('score') as HTMLLIElement;
     bricks: Bricks
     plate: Plate;
     ball: Ball;
+    score = 0;
     // plate direction
     direction = '';
     // 進行中
     isLive = true;
     constructor() {
-        this.bricks = new Bricks(20);
+        this.bricks = new Bricks(80);
         this.plate = new Plate(this.stage);
         this.ball = new Ball();
         this.init();
@@ -45,7 +47,7 @@ export default class GameControl {
                 break;
         }
         this.plate.CurrentX = x;
-        setTimeout(() => this.plateMove(), 50)
+        setTimeout(() => this.plateMove(), 30)
     }
 
     ballMove() {
@@ -58,10 +60,15 @@ export default class GameControl {
             this.ball.speedY = -this.ball.speedY;
         }
         if (curY > this.stage.clientHeight) {
-            throw new Error('結束遊戲');
+            alert('遊戲結束');
+            window.location.reload();
+            return;
         }
+
+
         this.ball.CurrentX = curX + this.ball.speedX;
         this.ball.CurrentY = curY + this.ball.speedY;
+
         if (this.knock(this.ball.ball, this.plate.plate)) {
             this.ball.speedY = -this.ball.speedY;
         }
@@ -70,6 +77,7 @@ export default class GameControl {
                 if (this.knock(b, this.ball.ball)) {
                     this.ball.speedY = -this.ball.speedY;
                     b.remove();
+                    this.scoreBox.innerText = `${++this.score}`;
                 }
             }
         }

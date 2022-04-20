@@ -9,7 +9,6 @@ export default class Plate {
 
     set CurrentX(value: number) {
         if (value < 0 || value + 80 > this.stageWidth) {
-            // throw new Error('撞牆了');
             return;
         }
         this.plate.style.left = value + 'px';
